@@ -13,6 +13,12 @@ router.get("/avisos", async (req,res)=>{
   res.render('Avisos', {Avisos}) 
 })
 
+router.get("/avisos/excluir/:id", async (req,res)=>{
+  const id = Number(req.params.id)
+  await avisos.excluir(id)
+  res.redirect('/avisos')
+})
+
 router.get("/avisos/novo",(req,res)=>{
     res.render('formulario_avisos')
 
