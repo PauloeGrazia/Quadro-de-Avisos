@@ -21,6 +21,5 @@ app.use(bodyParser.json())
 //rotas
 app.use(routerAvisos)
 
-
 //porta
 app.listen(3000)
