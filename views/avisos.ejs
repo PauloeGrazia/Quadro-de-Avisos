@@ -1,0 +1,69 @@
+<!-- Adicionar o Head -->
+<%- include('./partials/head') %> 
+
+  <body>
+    <%- include('./partials/navbar') %> 
+    <div class="container">
+      
+    <br>
+    
+    <a href="#"><i class="far fa-arrow-alt-circle-left pr-1 pb-2"></i>Voltar</a>
+
+    
+    <div class="card shadow">
+      <div class="card-header bg-green text-white pl-5 pt-3">
+        <h2 class="float-left"><i class="fas fa-clipboard-list pr-3"></i>Avisos Cadastrados</h2>
+        <a href="/avisos/novo" class="btn btn-lg btn-outline-light float-right"><i class="fas fa-plus-circle pr-1"></i>Novo Aviso</a>
+      </div>
+      <div class="card-body p-5">
+
+        <table class="table">
+          <thead class="gradient-green text-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Título</th>
+              <th scope="col">Data</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% if (Avisos.length < 1) { %>
+              <tr>
+                <td colspan="4" class="text-center">
+                  Nenhum Aviso Cadastrado
+                </td>
+              </tr>
+             
+            <% } %>
+
+           <% Avisos.forEach(Aviso => { %>           
+
+              <tr>
+                <th scope="row"> <%= Aviso.ID_avisos %> </th>
+                <td><%= Aviso.titulo %> </td>
+                <td><%= moment(Aviso.data).format("DD/MM/YYYY") %> </td>
+                <td>
+                  <button class="btn btn-primary">Alterar</button>
+                  <button class="btn btn-secondary">Excluir</button>
+                </td>
+              </tr>
+
+            <% }) %>
+
+          </tbody>
+        </table>
+        
+      </div> <!-- Card-Body-->
+    </div> <!-- Card -->
+
+    <br>
+
+    </div><!-- Container -->
+
+  <!-- Adicionar os Scipts do BootStrap-->
+  <%- include('./partials/scripts_import') %> 
+
+  </body>
+
+</html>

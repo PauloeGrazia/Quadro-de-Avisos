@@ -8,8 +8,9 @@ router.get("/",(req,res)=>{
     res.send("Pagina inicial")
 })
 
-router.get("/avisos",(req,res)=>{
-    res.send("Pagina de avisos cadastrados")
+router.get("/avisos", async (req,res)=>{
+  const Avisos = await avisos.selecionarTodos()
+  res.render('Avisos', {Avisos}) 
 })
 
 router.get("/avisos/novo",(req,res)=>{
@@ -28,5 +29,7 @@ router.post("/avisos/novo", async (req,res)=>{
     res.render('formulario_avisos',{msg})
     
 })
+
+
 
 module.exports = router
