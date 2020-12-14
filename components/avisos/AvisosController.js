@@ -36,6 +36,26 @@ router.post("/avisos/novo", async (req,res)=>{
     
 })
 
+router.post("/avisos/editar/:id", async (req,res) =>{
+  const id = req.body.id
+  const titulo = req.body.titulo
+  const data = req.body.data
+  const mensagem = req.body.mensagem
+  
+  await avisos.editar({titulo,data,mensagem}, id)
 
+  if(msg.tipo === "Sucesso"){
+    res.redirect('/avisos')
+  }
 
+  else{
+    res.render('formulario_avisos', {msg})
+  }
+})
+
+router.get("/avisos/editar/:id", async (req, res) =>{
+  const id = req.params.id
+  const Aviso = await avisos.selecionarAviso(id)
+  res.render('formulario_avisos', {Aviso})
+})
 module.exports = router

@@ -40,6 +40,24 @@
     }// Fim do Selecionar Todos
 
     /**
+     * Alterar um aviso cadastrado
+     * @param {object} aviso O aviso deve estar no seguinte formato
+     * {titulo <string> ,data <string> ,mensagem <strig>}
+     */
+    function editar(aviso, id){
+      return db('avisos').where('ID_avisos', id).update(aviso)
+      
+      .then( _ =>{
+        return { tipo: "sucesso", corpo: "Aviso Alterado com Sucesso"}
+      })
+
+      .catch(erro =>{
+        return { tipo: "erro", corpo: "Erro: " + erro}
+      })
+
+    }//fim do editar
+
+    /**
      * Função que exclui um aviso do Banco de Dados
      * @param {int} id id do Aviso
      */
@@ -47,6 +65,23 @@
       return db.del().from('avisos').where('ID_avisos',id)
     }
 
-    module.exports = {salvar, selecionarTodos, excluir}
+    /**
+     * Seleciona um Aviso
+     * @param {*} id Id do aviso que será selecionado
+     * @returns {object} Objeto com o aviso selecionado
+     */
+      function selecionarAviso(id){
+        return db.select('*').from('avisos').where('ID_avisos',id).first()
+        .then(avisos => { return avisos })
+
+        .catch(erro =>{
+          return { tipo: "erro", corpo: "Erro: " + erro}
+        })
+      }
+
+
+     // Fim do Selecionar Avisos
+
+    module.exports = {salvar, selecionarTodos, selecionarAviso ,excluir, editar}
 
     
