@@ -4,8 +4,9 @@ const avisos = require('./avisos')
 
 const router = require('express').Router()
 
-router.get("/",(req,res)=>{
-    res.send("Pagina inicial")
+router.get("/", async (req,res)=>{ 
+    const Avisos = await avisos.selecionarTodos()
+    res.render('index', {Avisos}) 
 })
 
 router.get("/avisos", async (req,res)=>{
@@ -42,7 +43,7 @@ router.post("/avisos/editar/:id", async (req,res) =>{
   const data = req.body.data
   const mensagem = req.body.mensagem
   
-  await avisos.editar({titulo,data,mensagem}, id)
+  const msg = await avisos.editar({titulo,data,mensagem}, id)
 
   if(msg.tipo === "Sucesso"){
     res.redirect('/avisos')

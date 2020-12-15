@@ -15,7 +15,7 @@
     
     <br>
     
-    <a href="#"><i class="far fa-arrow-alt-circle-left pr-1 pb-2"></i>Voltar</a>
+    <a href="/avisos"><i class="far fa-arrow-alt-circle-left pr-1 pb-2"></i>Voltar</a>
     <% if (typeof msg !== 'undefined') { %> <!-- Inicio typeof -->
 
       <% if (msg.tipo === 'Sucesso') { %> <!-- Inicio if sucesso -->
@@ -77,8 +77,9 @@
             <textarea id="mensagem" name="mensagem" cols="40" rows="5" class="form-control" required placeholder="Digite a Mensagem do Aviso Aqui"><%= typeof Aviso != 'undefined' ? Aviso.mensagem : null %></textarea>
           </div> 
           <div class="form-group text-right">
-            <button name="submit" type="submit" class="btn btn-primary"><%= typeof Aviso != 'undefined' ? "Alterar" : "Cadastar" %> </button>
-            <button name="submit" type="submit" class="btn btn-secondary">Limpar</button>
+            <button name="submit" type="submit" class="btn btn-primary"><%= typeof Aviso != 'undefined' ? "Alterar" : "Cadastar" %> </button>         
+            <button name="submit" type="reset" class="btn btn-secondary">Limpar Campos</button>
+            
           </div>
         </form>
 

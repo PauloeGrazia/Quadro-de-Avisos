@@ -28,7 +28,7 @@
 
     function selecionarTodos(){
 
-      return db.select('*').from('avisos')
+      return db.select('*').from('avisos').orderBy('data','ASC')
       .then(avisos =>{
         return avisos
       })
@@ -48,11 +48,11 @@
       return db('avisos').where('ID_avisos', id).update(aviso)
       
       .then( _ =>{
-        return { tipo: "sucesso", corpo: "Aviso Alterado com Sucesso"}
+        return { tipo: "Sucesso", corpo: "Aviso Alterado com Sucesso"}
       })
 
       .catch(erro =>{
-        return { tipo: "erro", corpo: "Erro: " + erro}
+        return { tipo: "Erro", corpo: "Erro: " + erro}
       })
 
     }//fim do editar
